@@ -1,17 +1,22 @@
 from bs4 import BeautifulSoup
 import requests
+from art import tprint
+import http.client
 
 
-number = int(input("Введите номер задания: "))
-
-
-
+tprint('TEST', font='bulbhead')
 def number_one():
+	print("Задание №1: ")
 	print("Ответ на 1 задание:\n1)Проверил бы логи\n2)Вторым вариантом я бы попробовал дебажить код\n3)Подробнее бы ознакомился с документацией API")
 
-def result(res):
-		print(res)
+number_one()
+print("\n")
 
+print("Задание №2: ")
+def result(res):
+	print(res)
+
+# Код к заданию 2, были типизированы некоторые строки, и исправлена строка "lambda: callback(step)" 
 def create_handlers(callback):
 	handlers:list = []
 	for step in range(5):
@@ -23,9 +28,10 @@ def execute_handlers(handlers:list):
 		handler()
 
 execute_handlers(create_handlers(result))
-
-
+# Конец кода к 3 заданию
+print("\n")
 def number_three():
+	print("Задание №3: ")
 	file = open("site.txt", encoding="utf8")
 	soup = BeautifulSoup(file, "html.parser")
 	a = len([tag.name for tag in soup.find_all()])
@@ -35,8 +41,12 @@ def number_three():
 	    attrs += len(list(elm.attrs.keys()))
 	print("Количество атрибутов: " + str(attrs))
 
-if number == 1:
-	number_one()
-elif number == 3:
-	number_three()
-	
+number_three()
+print("\n")
+
+def number_four():
+	my_ip = http.client.HTTPConnection("ifconfig.me")
+	my_ip.request("GET", "/ip")
+	print("Текущий публичный IP-адрес: " + my_ip.getresponse().read().decode('utf-8'))
+print("Задание 4: ")
+number_four()
